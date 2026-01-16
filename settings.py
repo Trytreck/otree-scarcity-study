@@ -2,57 +2,14 @@ from os import environ
 
 
 SESSION_CONFIGS = [
-    dict(
-        name='number_sync',
-        display_name="Jeu de synchronisation simple",
-        app_sequence=['number_sync'],
-        num_demo_participants=5,
-    ),
-    dict(
-        name='Jeu_de_bien_public',
-        display_name="Jeu_de_bien_public",
-        app_sequence=['Jeu_de_bien_public'],
-        num_demo_participants=4,
-    ),
-    dict(
-        name='Demographics',
-        display_name="Demographics",
-        app_sequence=['Demographics'],
-        num_demo_participants=4,
-    ),
-    dict(
-        name='Demographics_and_Jeu_de_bien_public',
-        display_name="Demographics_and_Jeu_de_bien_public",
-        app_sequence= ['Jeu_de_bien_public', 'Demographics'],
-        num_demo_participants=4,
-    ),
-
-dict(
-        name='DCE',
-        display_name="DCE",
-        app_sequence=['DCE'],
-        num_demo_participants=4,
-    ),
-dict(
-        name='Granjo',
-        display_name="Granjo",
-        app_sequence=['Granjo'],
-        num_demo_participants=200,
-    ),
-
-
+   
     dict(
         name='Granjo2',
         display_name="Étude Rareté - Concert Joules",
         app_sequence=['Granjo2'],
-        num_demo_participants=3,
+        num_demo_participants=30,
     ),
-    dict(
-        name='streamlit_app',
-        display_name="streamlit_app",
-        app_sequence=['streamlit_app'],
-        num_demo_participants=3,
-    ),
+    
 ]
 
 
@@ -97,3 +54,4 @@ Here are some oTree games.
 SECRET_KEY = '8362793390839'
 
 INSTALLED_APPS = ['otree']
+
