@@ -9,11 +9,13 @@ st.title("📊 Analyse Live - oTree")
 DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
 
 
-@st.cache_data(ttl=10)  # Rafraîchit les données toutes les 10 secondes
-def load_data():
+# 2. LA FONCTION (C'est ici qu'on la définit)
+@st.cache_data(ttl=5)
+def get_data():
     conn = psycopg2.connect(DB_URL)
-    # On récupère la table des joueurs de ton app Granjo2
-    query = "SELECT * FROM Granjo2_player"
+    # Si 'granjo2_player' ne marche pas, essaie 'otree_player' 
+    # ou vérifie le nom exact comme vu précédemment
+    query = 'SELECT * FROM granjo2_player' 
     df = pd.read_sql(query, conn)
     conn.close()
     return df
