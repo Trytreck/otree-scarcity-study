@@ -6,7 +6,7 @@ st.title("📊 Analyse Live - oTree")
 
 # Connexion à la base de données
 # Remplace par ton "External Database URL"
-DB_URL = "TON_EXTERNAL_DATABASE_URL_ICI"
+DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
 
 
 @st.cache_data(ttl=10)  # Rafraîchit les données toutes les 10 secondes
