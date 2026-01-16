@@ -2,36 +2,38 @@ import streamlit as st
 import pandas as pd
 import psycopg2
 
-st.title("📊 Analyse Live - oTree")
+# 1. Configuration de la page
+st.set_page_config(page_title="Live oTree Dashboard", layout="wide")
+st.title("📊 Analyse des données en temps réel")
 
-# Connexion à la base de données
-# Remplace par ton "External Database URL"
-DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
+# 2. Ta connexion (Vérifie bien que c'est l'URL EXTERNAL de Render)
+DB_URL = "TON_EXTERNAL_DATABASE_URL_ICI"
 
-
-# 2. LA FONCTION (C'est ici qu'on la définit)
+# 3. Définition de la fonction (On l'appelle 'load_data' ici)
 @st.cache_data(ttl=5)
-def get_data():
+def load_data():
     conn = psycopg2.connect(DB_URL)
-    # Si 'granjo2_player' ne marche pas, essaie 'otree_player' 
-    # ou vérifie le nom exact comme vu précédemment
-    query = 'SELECT * FROM granjo2_player' 
+    # On essaye de lire la table. Si tu as toujours l'erreur "relation does not exist", 
+    # vérifie le nom 'granjo2_player'
+    query = "SELECT * FROM granjo2_player"
     df = pd.read_sql(query, conn)
     conn.close()
     return df
 
-
+# 4. Appel de la fonction et affichage
 try:
+    # C'est ici qu'on utilise le nom défini plus haut
     data = load_data()
-
-    # Affichage de quelques stats
+    
+    st.success("Connexion établie avec succès !")
+    
+    # Affichage rapide
     st.metric("Nombre de participants", len(data))
-
-    # Exemple : Moyenne des enchères
-    if 'mon_enchere' in data.columns:
-        moyenne = data['mon_enchere'].mean()
-        st.subheader(f"Moyenne des enchères : {moyenne:.2f} €")
-        st.bar_chart(data['mon_enchere'])
+    
+    # Affichage du tableau de données
+    st.subheader("Données brutes")
+    st.dataframe(data)
 
 except Exception as e:
     st.error(f"Erreur de connexion : {e}")
+    st.info("Astuce : Si l'erreur dit 'name not defined', vérifiez que le nom après 'def' est identique à celui de l'appel.")
