@@ -94,10 +94,6 @@ class Enchere(Page):
     form_model = 'player'
     form_fields = ['offre_enchere']
 
-    # On n'affiche cette page QUE si le participant a dit "Oui" à l'achat
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.achat == True
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -116,3 +112,4 @@ page_sequence = [
     Enchere,
     Merci
 ]
+
