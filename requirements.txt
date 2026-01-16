@@ -1,0 +1,2 @@
+otree
+psycopg2-binary
