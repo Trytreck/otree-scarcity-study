@@ -7,7 +7,7 @@ st.set_page_config(page_title="Live oTree Dashboard", layout="wide")
 st.title("📊 Analyse des données en temps réel")
 
 # 2. Ta connexion (Vérifie bien que c'est l'URL EXTERNAL de Render)
-DB_URL = "TON_EXTERNAL_DATABASE_URL_ICI"
+DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
 
 # 3. Définition de la fonction (On l'appelle 'load_data' ici)
 @st.cache_data(ttl=5)
