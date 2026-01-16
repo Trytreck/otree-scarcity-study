@@ -15,7 +15,7 @@ def load_data():
     conn = psycopg2.connect(DB_URL)
     # On essaye de lire la table. Si tu as toujours l'erreur "relation does not exist", 
     # vérifie le nom 'granjo2_player'
-    query = "SELECT * FROM granjo2_player"
+    query = "SELECT * FROM Granjo2_player"
     df = pd.read_sql(query, conn)
     conn.close()
     return df
