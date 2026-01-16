@@ -13,7 +13,7 @@ DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d
 def load_data():
     conn = psycopg2.connect(DB_URL)
     # On récupère la table des joueurs de ton app Granjo2
-    query = "SELECT * FROM granjo2_player"
+    query = "SELECT * FROM Granjo2_player"
     df = pd.read_sql(query, conn)
     conn.close()
     return df
