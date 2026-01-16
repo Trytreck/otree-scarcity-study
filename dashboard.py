@@ -7,7 +7,7 @@ st.title("📊 Résultats de l'étude en Direct")
 
 # --- ÉTAPE CRUCIALE : COLLEZ VOTRE LIEN ICI ---
 # Exemple de format attendu : "postgres://user:password@host:port/database"
-DB_URL = "COLLEZ_VOTRE_LIEN_EXTERNE_RENDER_ICI"
+DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
 
 @st.cache_data(ttl=5)
 def load_data():
