@@ -2,35 +2,38 @@ import streamlit as st
 import pandas as pd
 import psycopg2
 
-# 1. Configuration de la page
 st.set_page_config(page_title="Live oTree Dashboard", layout="wide")
-st.title("📊 Analyse des données en temps réel")
+st.title("📊 Résultats de l'étude en Direct")
 
-# 2. Ta connexion (Vérifie bien que c'est l'URL EXTERNAL de Render)
-DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d5l7bmsoud1c7383cojg-a.frankfurt-postgres.render.com/ma_base_otree"
+# --- ÉTAPE CRUCIALE : COLLEZ VOTRE LIEN ICI ---
+# Exemple de format attendu : "postgres://user:password@host:port/database"
+DB_URL = "COLLEZ_VOTRE_LIEN_EXTERNE_RENDER_ICI"
 
-# 3. Définition de la fonction (On l'appelle 'load_data' ici)
 @st.cache_data(ttl=5)
 def load_data():
+    """Fonction pour lire les données SQL"""
     conn = psycopg2.connect(DB_URL)
-    query = "SELECT * FROM Granjo2_player ORDER BY id DESC"    df = pd.read_sql(query, conn)
+    # On essaie d'abord 'otree_player' qui est souvent le nom par défaut
+    # Si cela échoue, on testera 'granjo2_player'
+    query = "SELECT * FROM granjo2_player" 
+    df = pd.read_sql(query, conn)
     conn.close()
     return df
 
-# 4. Appel de la fonction et affichage
+# --- EXÉCUTION ---
 try:
-    # C'est ici qu'on utilise le nom défini plus haut
+    # On appelle bien 'load_data' qui est défini juste au-dessus
     data = load_data()
     
-    st.success("Connexion établie avec succès !")
+    st.success("✅ Connecté à la base de données Render")
     
-    # Affichage rapide
+    # Affichage des statistiques
     st.metric("Nombre de participants", len(data))
     
-    # Affichage du tableau de données
-    st.subheader("Données brutes")
+    # Affichage du tableau
+    st.subheader("Détail des réponses")
     st.dataframe(data)
 
 except Exception as e:
     st.error(f"Erreur de connexion : {e}")
-    st.info("Astuce : Si l'erreur dit 'name not defined', vérifiez que le nom après 'def' est identique à celui de l'appel.")
+    st.info("Vérifiez que vous avez bien remplacé 'TON_EXTERNAL_DATABASE_URL_ICI' par votre vrai lien postgres:// dans le code.")
