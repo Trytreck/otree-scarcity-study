@@ -13,9 +13,7 @@ DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d
 @st.cache_data(ttl=5)
 def load_data():
     conn = psycopg2.connect(DB_URL)
-    # Cette requête magique liste TOUTES les tables de votre étude
-    query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
-    df = pd.read_sql(query, conn)
+    query = "SELECT * FROM Granjo2_player ORDER BY id DESC"    df = pd.read_sql(query, conn)
     conn.close()
     return df
 
