@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Réservation : Concert de Joules{% endblock %}
+
+{% block content %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="text-muted">Billet Standard</h5>
+            <h2 class="display-4">{{ prix }} €</h2>
+        </div>
+    </div>
+
+    <div class="alert alert-{{ alerte_style }} mb-4">
+        <i class="bi bi-info-circle-fill"></i> {{ instruction }}
+    </div>
+
+    <div class="card p-4 bg-light">
+        <p class="lead">Quelle est votre décision ?</p>
+        {% formfield player.achat %}
+    </div>
+
+    <div class="mt-4 text-center">
+        <button class="otree-btn-next btn btn-primary btn-lg px-5">Valider ma décision</button>
+    </div>
+{% endblock %}

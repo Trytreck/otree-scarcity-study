@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Consentement libre et éclairé{% endblock %}
+
+{% block content %}
+    <div class="border p-3 mb-3" style="height: 200px; overflow-y: scroll; background-color: #f8f9fa;">
+        <h5>Formulaire de consentement</h5>
+        <p>En participant à cette étude, vous comprenez que :</p>
+        <ul>
+            <li>Votre participation est volontaire.</li>
+            <li>Vous pouvez arrêter à tout moment.</li>
+            <li>Les données sont traitées de manière confidentielle.</li>
+        </ul>
+        <p>Le but de cette expérience est d'analyser les processus de décision lors de l'achat de billets de concert.</p>
+    </div>
+
+    {% formfield player.consentement %}
+
+    <button class="otree-btn-next btn btn-primary">Entrer dans la billeterie</button>
+{% endblock %}

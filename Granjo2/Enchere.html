@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Proposition de prix{% endblock %}
+
+{% block content %}
+    <div class="alert alert-info">
+        Vous avez choisi d'acheter un billet. Le prix de vente conseillé est de <b>{{ prix_depart }} €</b>.
+        Cependant, s'agissant d'une vente spéciale, vous pouvez proposer votre propre prix.
+    </div>
+
+    <div class="card p-4 shadow-sm">
+        <p>Indiquez le montant maximum de votre offre :</p>
+        {% formfield player.offre_enchere %}
+
+        <p class="small text-muted">
+            Note : Si votre offre est supérieure ou égale au prix du marché (déterminé aléatoirement),
+            vous obtiendrez le billet.
+        </p>
+    </div>
+
+    <button class="otree-btn-next btn btn-success mt-3">Soumettre mon offre</button>
+{% endblock %}
