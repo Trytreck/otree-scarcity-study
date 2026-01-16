@@ -13,9 +13,8 @@ DB_URL = "postgresql://ma_base_otree_user:8mtdBRyT55FAlLDNWIgJGZl7Qn8aYFWQ@dpg-d
 @st.cache_data(ttl=5)
 def load_data():
     conn = psycopg2.connect(DB_URL)
-    # On essaye de lire la table. Si tu as toujours l'erreur "relation does not exist", 
-    # vérifie le nom 'granjo2_player'
-    query = "SELECT * FROM Granjo2_player"
+    # Cette requête magique liste TOUTES les tables de votre étude
+    query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
     df = pd.read_sql(query, conn)
     conn.close()
     return df
