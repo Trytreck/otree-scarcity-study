@@ -19,6 +19,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # --- Variable Système ---
+    condition = models.StringField()
+    nombre_clics = models.IntegerField(initial=0) # Plus besoin de la sous-classe !
+
     # --- Données Socio-démographiques ---
     age = models.IntegerField(label="Quel est votre âge ?", min=18, max=99)
     genre = models.StringField(
@@ -30,11 +34,10 @@ class Player(BasePlayer):
     # --- Consentement ---
     consentement = models.BooleanField(
         label="En cochant cette case, j'accepte de participer à cette étude.",
-        widget=widgets.CheckboxInput  # Une case à cocher est plus standard ici
+        widget=widgets.CheckboxInput
     )
 
     # --- Variables de l'expérience ---
-    condition = models.StringField()
     achat = models.BooleanField(
         label="Souhaitez-vous acheter un billet pour ce concert ?",
         choices=[
@@ -92,7 +95,8 @@ class VenteBillet(Page):
         }
 class Enchere(Page):
     form_model = 'player'
-    form_fields = ['offre_enchere']
+    form_fields = ['nombre_clics','offre_enchere']
+
 
 
     @staticmethod
@@ -112,4 +116,3 @@ page_sequence = [
     Enchere,
     Merci
 ]
-
