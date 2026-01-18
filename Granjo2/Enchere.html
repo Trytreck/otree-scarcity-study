@@ -21,3 +21,17 @@
 
     <button class="otree-btn-next btn btn-success mt-3">Soumettre mon offre</button>
 {% endblock %}
+{% block scripts %}
+<script>
+    // On récupère l'élément caché d'oTree qui stocke la donnée
+    let clickInput = document.getElementsByName("nombre_clics")[0];
+    let count = 0;
+
+    // A chaque clic sur la page, on augmente le compteur
+    document.addEventListener("click", function() {
+        count++;
+        clickInput.value = count; // On met à jour la valeur pour oTree
+        console.log("Clic détecté, total : " + count);
+    });
+</script>
+{% endblock %}
