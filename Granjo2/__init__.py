@@ -27,7 +27,7 @@ class Player(BasePlayer):
     age = models.IntegerField(label="Quel est votre âge ?", min=18, max=99)
     genre = models.StringField(
         label="Quel est votre genre ?",
-        choices=['Femme', 'Homme', 'Autre', 'Préfère ne pas répondre'],
+        choices=['Femme', 'Homme', 'Non-binaire', 'Préfère ne pas répondre'],
         widget=widgets.RadioSelect
     )
 
@@ -95,7 +95,7 @@ class VenteBillet(Page):
         }
 class Enchere(Page):
     form_model = 'player'
-    form_fields = ['nombre_clics','offre_enchere']
+    form_fields = ['offre_enchere', 'nombre_clics']
 
 
 
