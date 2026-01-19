@@ -1,37 +1,52 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Proposition de prix{% endblock %}
+{% block title %}
+    Votre offre pour le billet
+{% endblock %}
 
 {% block content %}
     <div class="alert alert-info">
-        Vous avez choisi d'acheter un billet. Le prix de vente conseillé est de <b>{{ prix_depart }} €</b>.
-        Cependant, s'agissant d'une vente spéciale, vous pouvez proposer votre propre prix.
+        {% if player.achat == False %}
+            Vous avez décidé de ne pas acheter un billet. Le prix de vente conseillé est de <b>80 €</b>.
+            Cependant, il reste un billet en vente et nous voulons le vendre à la personne
+            qui propose son meilleur prix. Quel offre maximum seriez-vous prêt.e à faire ?
+        {% else %}
+            Le prix de vente conseillé est de <b>{{ Constants.prix_billet }} €</b>.
+            Cependant, vous pouvez proposer votre propre prix.
+        {% endif %}
     </div>
 
     <div class="card p-4 shadow-sm">
-        <p>Indiquez le montant maximum de votre offre :</p>
+        <p>Indiquez le montant maximum de votre offre (entre 0 et 200 €) :</p>
+
         {% formfield player.offre_enchere %}
 
         <p class="small text-muted">
-            Note : Si votre offre est supérieure ou égale au prix du marché (déterminé aléatoirement),
-            vous obtiendrez le billet.
+            Note : Si votre offre est acceptée, vous obtiendrez votre billet pour le concert de Joules.
         </p>
     </div>
 
-    <button class="otree-btn-next btn btn-success mt-3">Soumettre mon offre</button>
+    {# Champ caché pour enregistrer les clics dans la base de données #}
+    <input type="hidden" name="nombre_clics" id="id_nombre_clics" value="0">
+
+    <div class="mt-3">
+        {% next_button %}
+    </div>
 {% endblock %}
+
 {% block scripts %}
 <script>
-    // On récupère l'élément caché d'oTree qui stocke la donnée
-    let clickInput = document.getElementsByName("nombre_clics")[0];
+    // Initialisation du compteur
     let count = 0;
+    let inputClics = document.getElementById('id_nombre_clics');
 
-    // A chaque clic sur la page, on augmente le compteur
-    document.addEventListener("click", function() {
+    // On écoute tous les clics sur la page
+    document.addEventListener('click', function() {
         count++;
-        clickInput.value = count; // On met à jour la valeur pour oTree
-        console.log("Clic détecté, total : " + count);
+        // On met à jour la valeur que oTree va enregistrer
+        inputClics.value = count;
+        console.log("Clic enregistré. Total : " + count);
     });
 </script>
 {% endblock %}
