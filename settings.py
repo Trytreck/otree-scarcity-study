@@ -2,14 +2,12 @@ from os import environ
 
 
 SESSION_CONFIGS = [
-   
     dict(
         name='Granjo2',
-        display_name="Étude Rareté - Concert Joules",
+        display_name="Étude Concert Joules",
         app_sequence=['Granjo2'],
         num_demo_participants=30,
     ),
-    
 ]
 
 
@@ -54,4 +52,3 @@ Here are some oTree games.
 SECRET_KEY = '8362793390839'
 
 INSTALLED_APPS = ['otree']
-
